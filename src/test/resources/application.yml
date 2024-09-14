@@ -1,0 +1,12 @@
+server:
+  port: 7900
+
+spring:
+  security:
+    line:
+      enabled: true
+      authc:
+        authorization-param-name: accessToken
+        client-id: xxxxxx
+        path-pattern: /login/line
+        post-only: true
