@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 /**
  * XSS扫描过滤工具
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
  */
 public class AntiSamyScanUtils {
 	

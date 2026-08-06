@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * Policy对象缓存管理
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
  */
 public class PolicyCacheManager {
 	
