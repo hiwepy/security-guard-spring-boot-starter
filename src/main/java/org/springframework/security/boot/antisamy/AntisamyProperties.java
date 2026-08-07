@@ -15,7 +15,7 @@
  */
 package org.springframework.security.boot.antisamy;
 
-import io.hiwepy.cloud.autoconfigure.antisamy.config.Ini;
+import org.springframework.security.boot.antisamy.config.Ini;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;

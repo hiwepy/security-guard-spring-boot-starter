@@ -16,7 +16,7 @@
 package org.springframework.security.boot.csrfguard;
 
 import org.apache.commons.collections.MapUtils;
-import org.apache.shiro.biz.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 

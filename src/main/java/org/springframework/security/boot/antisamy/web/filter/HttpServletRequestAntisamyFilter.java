@@ -41,9 +41,13 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (this.matches(request)) {
-			//根据请求获取响应的
-			AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
-			filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
+			try {
+				// 根据请求获取对应的 AntiSamy 策略。
+				AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
+				filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
+			} catch (PolicyException e) {
+				throw new ServletException("Failed to load AntiSamy policy", e);
+			}
 		} else {
 			filterChain.doFilter(request,response);
 		}

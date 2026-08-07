@@ -1,8 +1,5 @@
 package org.springframework.security.boot;
 
-import org.apache.shiro.spring.boot.csrfguard.CsrfguardConstants;
-import org.apache.shiro.spring.boot.csrfguard.CsrfguardJavascriptServletProperties;
-import org.apache.shiro.spring.boot.csrfguard.web.filter.CsrfGuardFilter;
 import org.owasp.csrfguard.CsrfGuard;
 import org.owasp.csrfguard.CsrfGuardHttpSessionListener;
 import org.owasp.csrfguard.servlet.JavaScriptServlet;
@@ -18,6 +15,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.boot.csrfguard.CsrfguardConstants;
+import org.springframework.security.boot.csrfguard.CsrfguardJavascriptServletProperties;
+import org.springframework.security.boot.csrfguard.web.filter.CsrfGuardFilter;
 
 @Configuration
 @ConditionalOnClass(CsrfGuard.class)
@@ -98,4 +98,3 @@ public class SecurityCsrfguardAutoConfiguration implements ApplicationContextAwa
 	}
 	
 }
- 

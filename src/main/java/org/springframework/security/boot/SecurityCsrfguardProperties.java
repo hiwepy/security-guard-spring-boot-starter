@@ -15,11 +15,11 @@
  */
 package org.springframework.security.boot;
 
-import io.hiwepy.cloud.autoconfigure.csrfguard.CsrfguardJavascriptServletProperties;
-import io.hiwepy.cloud.autoconfigure.csrfguard.CsrfguardProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.security.boot.csrfguard.CsrfguardJavascriptServletProperties;
+import org.springframework.security.boot.csrfguard.CsrfguardProperties;
 
 import java.util.Properties;
 

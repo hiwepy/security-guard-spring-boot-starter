@@ -1,7 +1,5 @@
 package org.springframework.security.boot.antisamy.web.servlet.http;
 
-import org.apache.shiro.spring.boot.antisamy.cache.AntiSamyWrapper;
-import org.apache.shiro.spring.boot.antisamy.utils.AntiSamyScanUtils;
 import org.springframework.security.boot.antisamy.cache.AntiSamyWrapper;
 import org.springframework.security.boot.antisamy.utils.AntiSamyScanUtils;
 
