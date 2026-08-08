@@ -1,7 +1,7 @@
  package org.springframework.security.boot.antisamy.cache;
 
 
- import org.springframework.security.boot.antisamy.AntisamyProperties;
+ import org.apache.shiro.spring.boot.antisamy.AntisamyProperties;
  import org.owasp.validator.html.AntiSamy;
  import org.owasp.validator.html.Policy;
  import org.owasp.validator.html.PolicyException;
@@ -11,7 +11,7 @@
 
 /**
  * AntiSamy 对象缓存管理
- * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class AntiSamyCacheManager {
 	
@@ -67,3 +67,4 @@ public class AntiSamyCacheManager {
 		}
 	}
 }
+

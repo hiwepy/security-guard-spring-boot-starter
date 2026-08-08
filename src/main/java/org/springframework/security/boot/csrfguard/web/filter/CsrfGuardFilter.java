@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, hiwepy (https://github.com/easy-4-java).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,10 +15,69 @@
  */
 package org.springframework.security.boot.csrfguard.web.filter;
 
+import org.owasp.csrfguard.CsrfGuard;
+import org.owasp.csrfguard.http.InterceptRedirectResponse;
+
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 /**                
  * 拷贝 org.owasp.csrfguard.CsrfGuardFilter
- * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
-public class CsrfGuardFilter extends org.owasp.csrfguard.CsrfGuardFilter {
+public class CsrfGuardFilter extends AccessControlFilter {
+	
+	@Override
+	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
+			throws Exception {
+		//maybe the short circuit to disable is set
+		return !CsrfGuard.getInstance().isEnabled();
+	}  
+
+	@Override
+	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+		
+		/** only work with HttpServletRequest objects **/
+		if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
+			
+			HttpServletRequest httpRequest = (HttpServletRequest) request;
+			HttpSession session = httpRequest.getSession(false);
+			
+			//if there is no session and we arent validating when no session exists
+			if (session == null && !CsrfGuard.getInstance().isValidateWhenNoSessionExists()) {
+				// If there is no session, no harm can be done
+				return true;
+			}
+
+			CsrfGuard csrfGuard = CsrfGuard.getInstance();
+			csrfGuard.getLogger().log(String.format("CsrfGuard analyzing request %s", httpRequest.getRequestURI()));
+
+			InterceptRedirectResponse httpResponse = new InterceptRedirectResponse((HttpServletResponse) response, httpRequest, csrfGuard);
+
+//			 if(MultipartHttpServletRequest.isMultipartRequest(httpRequest)) {
+//				 httpRequest = new MultipartHttpServletRequest(httpRequest);
+//			 }
+
+			if ((session != null && session.isNew()) && csrfGuard.isUseNewTokenLandingPage()) {
+				csrfGuard.writeLandingPage(httpRequest, httpResponse);
+			} else if (csrfGuard.isValidRequest(httpRequest, httpResponse)) {
+				return true;
+			} else {
+				/** invalid request - nothing to do - actions already executed **/
+			}
+
+			/** update tokens **/
+			csrfGuard.updateTokens(httpRequest);
+
+		} else {
+			filterConfig.getServletContext().log(String.format("[WARNING] CsrfGuard does not know how to work with requests of class %s ", request.getClass().getName()));
+			return true;
+		}
+		
+		return true;
+	}
 	
 }

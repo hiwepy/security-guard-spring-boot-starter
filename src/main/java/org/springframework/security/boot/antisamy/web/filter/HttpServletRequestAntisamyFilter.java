@@ -11,15 +11,15 @@ import org.springframework.util.PathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.UrlPathHelper;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
  * Antisamy XSS(Cross Site Scripting)，即跨站脚本攻击请求过滤
- * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	
@@ -41,13 +41,9 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (this.matches(request)) {
-			try {
-				// 根据请求获取对应的 AntiSamy 策略。
-				AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
-				filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
-			} catch (PolicyException e) {
-				throw new ServletException("Failed to load AntiSamy policy", e);
-			}
+			//根据请求获取响应的
+			AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
+			filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
 		} else {
 			filterChain.doFilter(request,response);
 		}

@@ -1,12 +1,12 @@
 package org.springframework.security.boot.antisamy.cache;
 
+import org.apache.shiro.biz.utils.StringUtils;
 import org.owasp.validator.html.Policy;
 import org.owasp.validator.html.PolicyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.net.URL;
@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * Policy对象缓存管理
- * @author 		： <a href="https://github.com/easy-4-java">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class PolicyCacheManager {
 	
@@ -118,3 +118,4 @@ public class PolicyCacheManager {
 	}
 	
 }
+
