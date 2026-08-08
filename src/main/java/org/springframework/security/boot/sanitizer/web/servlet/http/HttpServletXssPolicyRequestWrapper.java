@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.boot.utils.XssScanUtils;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 
 /**
  * XSS(Cross Site Scripting)，即跨站脚本攻击请求过滤;
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrapper {
 
