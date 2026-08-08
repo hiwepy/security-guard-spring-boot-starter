@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 
 /**
  * RichText XSS(Cross Site Scripting)，即跨站脚本攻击请求过滤
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper {
 
