@@ -2,6 +2,12 @@ package org.springframework.security.boot.antisamy.cache;
 
 import org.owasp.validator.html.AntiSamy;
 import org.owasp.validator.html.Policy;
+/**
+ * AntiSamyWrapper.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 
 public class AntiSamyWrapper {
 
@@ -9,7 +15,7 @@ public class AntiSamyWrapper {
 	protected AntiSamy antiSamy;
 	/**Policy策略对象*/
 	protected Policy policy;
-	/** 扫描器类型，0：DOM类型扫描器,1:SAX类型扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现*/
+	/** 扫描器type，0：DOMtype扫描器,1:SAXtype扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现*/
 	protected int scanType = 1;
 	/**需要进行Xss检查的Header*/
 	protected String[] policyHeaders;

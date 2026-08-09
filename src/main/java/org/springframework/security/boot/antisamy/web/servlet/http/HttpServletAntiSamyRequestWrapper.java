@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * RichText XSS(Cross Site Scripting)，即跨站脚本攻击请求过滤
+ * RichText XSS(Cross Site Scripting)，即跨站脚本攻击request过滤
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper {

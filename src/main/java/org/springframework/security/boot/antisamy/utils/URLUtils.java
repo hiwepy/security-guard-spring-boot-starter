@@ -24,17 +24,23 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+/**
+ * URLUtils.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 
 public class URLUtils {
 
 	protected static final String DEFAULT_URL_ENCODING = "UTF-8";
-	//验证规则
+	//validate规则
     protected static String regEx = ".*%[0-9A-F]{2}.*";
     //编译正则表达式
     protected static Pattern pattern = Pattern.compile(regEx);
     
 	/**
-	 * @描述:判断字串是否经过URLEncoder编码(正则判断字串是否匹配"%xy"，其中xy是两位16进制的数值)
+	 * @描述:判断字串whether经过URLEncoderencoding(正则判断字串whether匹配"%xy"，其中xy是两位16进制的数值)
 	 * @param String
 	 * @return
 	 */
@@ -43,7 +49,7 @@ public class URLUtils {
 			return false;
 		}else{
 		    Matcher matcher = pattern.matcher(str);
-		    // 字符串是否与正则表达式相匹配
+		    // 字符串whether与正则表达式相匹配
 		    return matcher.matches();		    
 		}
 	}

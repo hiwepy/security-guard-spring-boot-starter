@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.boot.sanitizer.web.filter.HttpServletRequestXssPolicyFilter;
 
 /**
- * 默认拦截器
+ * default拦截器
  */
 @Configuration
 @AutoConfigureBefore( name = {

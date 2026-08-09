@@ -19,6 +19,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * SecurityCsrfguardAutoConfiguration.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass(CsrfGuard.class)
 @ConditionalOnProperty(prefix = SecurityCsrfguardProperties.PREFIX, value = "enabled", havingValue = "true")
@@ -46,7 +52,7 @@ public class SecurityCsrfguardAutoConfiguration implements ApplicationContextAwa
 		
 		registrationBean.setServlet(javaScriptServlet);
 		
-		// 默认参数
+		// default参数
 		CsrfguardJavascriptServletProperties javascript = properties.getJavascript();
 		registrationBean.addInitParameter(CsrfguardConstants.CACHE_CONTROL_KEY, javascript.getCacheControl());
 		registrationBean.addInitParameter(CsrfguardConstants.DOMAIN_STRICT_KEY, Boolean.toString(javascript.isDomainStrict()));

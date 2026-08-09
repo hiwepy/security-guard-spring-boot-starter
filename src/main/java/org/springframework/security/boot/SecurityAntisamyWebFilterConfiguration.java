@@ -15,9 +15,9 @@ import org.springframework.security.boot.antisamy.cache.PolicyCacheManager;
 import org.springframework.security.boot.antisamy.web.filter.HttpServletRequestAntisamyFilter;
 
 /*
- * 默认拦截器
- * <p>Shiro内置了很多默认的拦截器，比如身份验证、授权等相关的。默认拦截器可以参考org.apache.shiro.web.filter.mgt.DefaultFilter中的枚举拦截器：&nbsp;&nbsp;</p>
- * 自定义Filter通过@Bean注解后，被Spring Boot自动注册到了容器的Filter chain中，这样导致的结果是，所有URL都会被自定义Filter过滤，而不是Shiro中配置的一部分URL。
+ * default拦截器
+ * <p>Shiro内置了很多default的拦截器，比如身份validate、authorization等相关的。default拦截器可以参考org.apache.shiro.web.filter.mgt.DefaultFilter中的枚举拦截器：&nbsp;&nbsp;</p>
+ * 自定义Filter通过@Bean注解后，被Spring Boot自动registers到了容器的Filter chain中，这样导致的结果是，所有URL都会被自定义Filter过滤，而不是Shiro中configuration的一部分URL。
  */
 @Configuration
 @AutoConfigureBefore( name = {

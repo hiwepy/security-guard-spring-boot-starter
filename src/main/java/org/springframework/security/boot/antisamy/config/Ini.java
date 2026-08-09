@@ -6,6 +6,12 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.util.*;
+/**
+ * Ini.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 
 public class Ini implements Map<String, Ini.Section> {
 

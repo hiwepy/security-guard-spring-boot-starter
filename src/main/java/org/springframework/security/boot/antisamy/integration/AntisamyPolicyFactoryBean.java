@@ -18,11 +18,17 @@ package org.springframework.security.boot.antisamy.integration;
 import org.owasp.validator.html.Policy;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.ResourceUtils;
+/**
+ * AntisamyPolicyFactoryBean.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 
 public class AntisamyPolicyFactoryBean implements FactoryBean<Policy>{
 
 	/**
-	 * policy配置文件路径
+	 * policyconfiguration文件path
 	 */
 	private String policyConfigFilePath;
 	

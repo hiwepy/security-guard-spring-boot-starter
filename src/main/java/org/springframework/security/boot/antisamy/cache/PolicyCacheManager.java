@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Policy对象缓存管理
+ * Policy对象cache管理
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class PolicyCacheManager {

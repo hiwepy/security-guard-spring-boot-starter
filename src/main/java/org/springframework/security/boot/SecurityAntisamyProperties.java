@@ -19,13 +19,19 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.boot.antisamy.AntisamyProperties;
 
+/**
+ * SecurityAntisamyProperties.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(SecurityAntisamyProperties.PREFIX)
 @Data
 public class SecurityAntisamyProperties extends AntisamyProperties {
 	
 	public static final String PREFIX = "spring.security.antisamy";
 	
-	/** 是否启用 **/
+	/** whetherenable **/
 	private boolean enabled = false;
 	
 }

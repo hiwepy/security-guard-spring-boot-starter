@@ -18,13 +18,19 @@ package org.springframework.security.boot;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * SecurityXssPolicyProperties.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(SecurityXssPolicyProperties.PREFIX)
 @Data
 public class SecurityXssPolicyProperties {
 
 	public static final String PREFIX = "spring.security.xss-policy";
 
-	/** 是否启用 **/
+	/** whetherenable **/
 	private boolean enabled = false;
 
 	/** 需要进行Xss检查的Header */

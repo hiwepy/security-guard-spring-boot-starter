@@ -18,19 +18,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Antisamy XSS(Cross Site Scripting)，即跨站脚本攻击请求过滤
+ * Antisamy XSS(Cross Site Scripting)，即跨站脚本攻击request过滤
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	
 
-	/** 路径解析工具 */
+	/** path解析工具 */
 	protected UrlPathHelper urlPathHelper = new UrlPathHelper();
-	/** 路径规则匹配工具 */
+	/** path规则匹配工具 */
 	protected PathMatcher pathMatcher = new AntPathMatcher();
-	/** AntiSamy 对象缓存管理*/
+	/** AntiSamy 对象cache管理*/
 	protected final AntiSamyCacheManager antiSamyCacheManager;
-	/** Antisamy 配置 */
+	/** Antisamy configuration */
 	protected final AntisamyProperties properties;
 	
 	public HttpServletRequestAntisamyFilter(AntiSamyCacheManager antiSamyCacheManager, AntisamyProperties properties) {
@@ -41,7 +41,7 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (this.matches(request)) {
-			//根据请求获取响应的
+			//根据requestgetsresponse的
 			AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
 			filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
 		} else {
@@ -83,7 +83,7 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	}
 	
 	protected AntiSamyWrapper getAntiSamyWrapperForRequest(HttpServletRequest request) throws PolicyException {
-		//解析请求路径
+		//解析requestpath
 		String lookupPath = this.urlPathHelper.getLookupPathForRequest(request);
 		for (String pattern : properties.getPolicyMappings().keySet()) {
 			if (pathMatcher.match(pattern, lookupPath)) {

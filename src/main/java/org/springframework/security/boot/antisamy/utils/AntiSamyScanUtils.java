@@ -28,7 +28,7 @@ public class AntiSamyScanUtils {
 		AntiSamy antiSamy = proxy.getAntiSamy();
 		//Policy策略对象
 		Policy policy = proxy.getPolicy();
-		// 扫描器类型，0：DOM类型扫描器,1:SAX类型扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现
+		// 扫描器type，0：DOMtype扫描器,1:SAXtype扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现
 		int scanType = proxy.getScanType();
 		String ret = COMPLIED_FIXS.get(tag);
 		if( ret != null){
@@ -51,14 +51,14 @@ public class AntiSamyScanUtils {
 				AntiSamy antiSamy = proxy.getAntiSamy();
 				//Policy策略对象
 				Policy policy = proxy.getPolicy();
-				// 扫描器类型，0：DOM类型扫描器,1:SAX类型扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现
+				// 扫描器type，0：DOMtype扫描器,1:SAXtype扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现
 				int scanType = proxy.getScanType();
 				LOG.debug("Tainted HTML :" + taintedHTML);
 				//XSS扫描
 				CleanResults cr = policy != null ?  antiSamy.scan(taintedHTML, policy, scanType) : antiSamy.scan(taintedHTML, scanType) ;
 				String cleanHTML = cr.getCleanHTML();
 				LOG.debug("XSS CleanHTML :" + cleanHTML);
-				//处理一些特殊异常Bug
+				//处理一些特殊exceptionBug
 				if( HTML_PATTERN.matcher(taintedHTML).find() && cleanbad ){
 					//安全的HTML输出
 					cleanHTML = StringEscapeUtils.unescapeHtml4(cleanHTML);
@@ -92,7 +92,7 @@ public class AntiSamyScanUtils {
 				AntiSamy antiSamy = proxy.getAntiSamy();
 				//Policy策略对象
 				Policy policy = proxy.getPolicy();
-				// 扫描器类型，0：DOM类型扫描器,1:SAX类型扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现
+				// 扫描器type，0：DOMtype扫描器,1:SAXtype扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现
 				int scanType = proxy.getScanType();
 				LOG.debug("Tainted :" + taintedHTML);
 				//XSS扫描

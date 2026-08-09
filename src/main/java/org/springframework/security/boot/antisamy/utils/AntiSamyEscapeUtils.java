@@ -3,6 +3,12 @@ package org.springframework.security.boot.antisamy.utils;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+/**
+ * AntiSamyEscapeUtils.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 
 public class AntiSamyEscapeUtils {
 

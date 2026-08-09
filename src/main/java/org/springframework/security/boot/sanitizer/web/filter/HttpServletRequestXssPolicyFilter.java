@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * XSS(Cross Site Scripting)，即跨站脚本攻击请求过滤
+ * XSS(Cross Site Scripting)，即跨站脚本攻击request过滤
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class HttpServletRequestXssPolicyFilter extends OncePerRequestFilter {

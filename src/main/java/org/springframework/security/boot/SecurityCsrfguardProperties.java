@@ -24,6 +24,12 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import java.util.Properties;
 
 
+/**
+ * SecurityCsrfguardProperties.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(SecurityCsrfguardProperties.PREFIX)
 @Slf4j
 public class SecurityCsrfguardProperties extends CsrfguardProperties {

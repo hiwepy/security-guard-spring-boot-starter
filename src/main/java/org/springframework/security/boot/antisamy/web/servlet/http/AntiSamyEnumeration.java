@@ -6,6 +6,12 @@ import org.springframework.security.boot.antisamy.cache.AntiSamyWrapper;
 import org.springframework.security.boot.antisamy.utils.AntiSamyScanUtils;
 
 import java.util.Enumeration;
+/**
+ * AntiSamyEnumeration.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 
 public class AntiSamyEnumeration implements Enumeration<String> {
 	

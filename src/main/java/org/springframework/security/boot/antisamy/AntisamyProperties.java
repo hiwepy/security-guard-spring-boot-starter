@@ -30,17 +30,17 @@ public class AntisamyProperties {
 
 	public static final String DEFAULT_POLICY = "classpath*:antisamy-policy.xml";
 	
-	/** 扫描器类型，0：DOM类型扫描器,1:SAX类型扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现*/
+	/** 扫描器type，0：DOMtype扫描器,1:SAXtype扫描器；两者的区别如同XML解析中DOM解析与Sax解析区别相同，实际上就是对两种解析方式的实现*/
 	protected int scanType = 1;
-	/** 请求路径的正则匹配表达式，匹配的路径会被检测XSS*/
+	/** requestpath的正则匹配表达式，匹配的path会被检测XSS*/
 	protected String[] includePatterns = null;
-	/** 不进行过滤请求路径的正则匹配表达式，匹配的路径不会被检测XSS*/
+	/** 不进行过滤requestpath的正则匹配表达式，匹配的path不会被检测XSS*/
 	protected String[] excludePatterns = null;
-	/**防XSS攻击的模块对应的规则配置*/
+	/**防XSS攻击的模块对应的规则configuration*/
 	protected Map<String,String> policyMappings = new HashMap<String,String>();
 	/**需要进行Xss检查的Header*/
 	protected String[] policyHeaders = null;
-	/**默认的防XSS攻击的规则配置*/
+	/**default的防XSS攻击的规则configuration*/
 	protected String defaultPolicy = DEFAULT_POLICY;
 
 	public int getScanType() {
