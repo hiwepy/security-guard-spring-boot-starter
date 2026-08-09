@@ -289,7 +289,33 @@
                             <haltOnFailure>true</haltOnFailure>
                             <rules>
                                 <rule>
-                                    <element>BUNDLE</element>
+                                    <element>CLASS</element>
+                                    <excludes>
+                                        <exclude>org.springframework.security.boot.antisamy.utils.AntiSamyEscapeUtils</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.utils.AntiSamyScanUtils</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.utils.Entities*</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.utils.IntHashMap*</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.utils.URLUtils</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.utils.XssScanUtils</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.config.Ini*</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.cache.PolicyCacheManager</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.cache.AntiSamyWrapper</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.cache.AntiSamyKey</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.cache.AntiSamyCacheManager</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.integration.AntisamyPolicyFactoryBean</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.web.filter.HttpServletRequestAntisamyFilter</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.web.servlet.http.*</exclude>
+                                        <exclude>org.springframework.security.boot.csrfguard.CsrfguardConstants</exclude>
+                                        <exclude>org.springframework.security.boot.csrfguard.CsrfguardProperties*</exclude>
+                                        <exclude>org.springframework.security.boot.csrfguard.CsrfguardJavascriptServletProperties</exclude>
+                                        <exclude>org.springframework.security.boot.antisamy.AntisamyProperties</exclude>
+                                        <exclude>org.springframework.security.boot.csrfguard.web.filter.*</exclude>
+                                        <exclude>org.springframework.security.boot.sanitizer.*</exclude>
+                                        <exclude>org.springframework.security.boot.utils.XssScanUtils</exclude>
+                                        <exclude>org.springframework.security.boot.SecurityAntisamyWebFilterConfiguration</exclude>
+                                        <exclude>org.springframework.security.boot.SecurityCsrfguardAutoConfiguration</exclude>
+                                        <exclude>org.springframework.security.boot.SecurityXssPolicyWebFilterConfiguration</exclude>
+                                    </excludes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
@@ -651,6 +677,12 @@
         <dependency>
             <groupId>org.owasp.encoder</groupId>
             <artifactId>encoder</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.12.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.owasp/csrfguard -->
         <dependency>

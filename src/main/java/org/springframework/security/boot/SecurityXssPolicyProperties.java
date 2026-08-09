@@ -15,7 +15,6 @@
  */
 package org.springframework.security.boot;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -25,7 +24,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 1.0.0
  */
 @ConfigurationProperties(SecurityXssPolicyProperties.PREFIX)
-@Data
 public class SecurityXssPolicyProperties {
 
 	public static final String PREFIX = "spring.security.xss-policy";
@@ -35,5 +33,10 @@ public class SecurityXssPolicyProperties {
 
 	/** 需要进行Xss检查的Header */
 	protected String[] policyHeaders = null;
+
+	public boolean isEnabled() { return enabled; }
+	public void setEnabled(boolean enabled) { this.enabled = enabled; }
+	public String[] getPolicyHeaders() { return policyHeaders; }
+	public void setPolicyHeaders(String[] policyHeaders) { this.policyHeaders = policyHeaders; }
 
 }

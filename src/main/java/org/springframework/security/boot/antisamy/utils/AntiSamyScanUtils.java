@@ -1,9 +1,11 @@
 package org.springframework.security.boot.antisamy.utils;
 
 import org.owasp.validator.html.AntiSamy;
+import org.owasp.validator.html.CleanResults;
 import org.owasp.validator.html.Policy;
 import org.owasp.validator.html.PolicyException;
 import org.owasp.validator.html.ScanException;
+import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.boot.antisamy.cache.AntiSamyWrapper;

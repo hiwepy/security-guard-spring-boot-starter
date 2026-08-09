@@ -41,13 +41,15 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (this.matches(request)) {
-			//根据requestgetsresponse的
-			AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
-			filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
+			try {
+				AntiSamyWrapper antiSamyWrapper = this.getAntiSamyWrapperForRequest(request);
+				filterChain.doFilter(new HttpServletAntiSamyRequestWrapper(antiSamyWrapper, request), response);
+			} catch (PolicyException e) {
+				throw new ServletException("AntiSamy policy error", e);
+			}
 		} else {
 			filterChain.doFilter(request,response);
 		}
-		 
 	}
 	
 	protected boolean matches(HttpServletRequest request) {

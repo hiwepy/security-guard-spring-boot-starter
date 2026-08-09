@@ -1,45 +1,50 @@
-/*
- * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
 package org.springframework.security.boot;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.boot.csrfguard.CsrfguardJavascriptServletProperties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Unit tests for {{ @link SecurityCsrfguardProperties }}.
- *
- * <p>Verifies default values, getters/setters and POJO contract.</p>
- *
- * @author [@Loong Wan](https://github.com/loong10k)
- * @since 1.0.0
- */
 @DisplayName("SecurityCsrfguardProperties Tests")
 class SecurityCsrfguardPropertiesTest {
+
     @Test
-    @DisplayName("Default constructor creates non-null instance")
-    void testDefaultInstance() {
+    @DisplayName("Default values are correct")
+    void testDefaults() {
         SecurityCsrfguardProperties props = new SecurityCsrfguardProperties();
-        assertThat(props).isNotNull();
+        assertThat(props.isEnabled()).isFalse();
+        assertThat(props.getJavascript()).isNotNull();
+        assertThat(props.getTokenName()).isEqualTo("OWASP_CSRFGUARD");
+        assertThat(props.getTokenLength()).isEqualTo(32);
     }
 
     @Test
-    @DisplayName("Public constant 'PREFIX' has expected value")
-    void testPREFIXConstant() {
+    @DisplayName("toProperties returns non-empty Properties")
+    void testToProperties() {
+        SecurityCsrfguardProperties props = new SecurityCsrfguardProperties();
+        props.setNewTokenLandingPage("/landing");
+        props.getJavascript().setSourceFile("/csrfguard.js");
+        var properties = props.toProperties();
+        assertThat(properties).isNotEmpty();
+        assertThat(properties.containsKey("org.owasp.csrfguard.Enabled")).isTrue();
+        assertThat(properties.containsKey("org.owasp.csrfguard.TokenName")).isTrue();
+    }
+
+    @Test
+    @DisplayName("PREFIX constant")
+    void testPrefix() {
         assertThat(SecurityCsrfguardProperties.PREFIX).isEqualTo("spring.security.csrf-guard");
+    }
+
+    @Test
+    @DisplayName("Getters and setters work")
+    void testGettersSetters() {
+        SecurityCsrfguardProperties props = new SecurityCsrfguardProperties();
+        props.setEnabled(true);
+        assertThat(props.isEnabled()).isTrue();
+        CsrfguardJavascriptServletProperties js = new CsrfguardJavascriptServletProperties();
+        props.setJavascript(js);
+        assertThat(props.getJavascript()).isSameAs(js);
     }
 }

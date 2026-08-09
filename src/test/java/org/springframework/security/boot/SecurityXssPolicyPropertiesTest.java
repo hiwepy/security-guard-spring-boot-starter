@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {{ @link SecurityXssPolicyProperties }}.
+ * Unit tests for {@link SecurityXssPolicyProperties}.
  *
  * <p>Verifies default values, getters/setters and POJO contract.</p>
  *
@@ -41,16 +41,18 @@ class SecurityXssPolicyPropertiesTest {
     @DisplayName("Field 'enabled' can be set and read")
     void testEnabledField() {
         SecurityXssPolicyProperties props = new SecurityXssPolicyProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = SecurityXssPolicyProperties.class.getDeclaredField("enabled");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        assertThat(props.isEnabled()).isFalse();
+        props.setEnabled(true);
+        assertThat(props.isEnabled()).isTrue();
+    }
+
+    @Test
+    @DisplayName("Field 'policyHeaders' can be set and read")
+    void testPolicyHeadersField() {
+        SecurityXssPolicyProperties props = new SecurityXssPolicyProperties();
+        String[] headers = {"X-XSS-Protection: 1; mode=block"};
+        props.setPolicyHeaders(headers);
+        assertThat(props.getPolicyHeaders()).isEqualTo(headers);
     }
 
     @Test

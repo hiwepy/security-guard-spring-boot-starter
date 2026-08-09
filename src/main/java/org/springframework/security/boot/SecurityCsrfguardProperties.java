@@ -15,9 +15,10 @@
  */
 package org.springframework.security.boot;
 
-import io.hiwepy.cloud.autoconfigure.csrfguard.CsrfguardJavascriptServletProperties;
-import io.hiwepy.cloud.autoconfigure.csrfguard.CsrfguardProperties;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.boot.csrfguard.CsrfguardJavascriptServletProperties;
+import org.springframework.security.boot.csrfguard.CsrfguardProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
@@ -31,8 +32,9 @@ import java.util.Properties;
  * @since 1.0.0
  */
 @ConfigurationProperties(SecurityCsrfguardProperties.PREFIX)
-@Slf4j
 public class SecurityCsrfguardProperties extends CsrfguardProperties {
+
+	private static final Logger log = LoggerFactory.getLogger(SecurityCsrfguardProperties.class);
 
 	public static final String PREFIX = "spring.security.csrf-guard";
 	

@@ -1,7 +1,7 @@
  package org.springframework.security.boot.antisamy.cache;
 
 
- import org.apache.shiro.spring.boot.antisamy.AntisamyProperties;
+ import org.springframework.security.boot.antisamy.AntisamyProperties;
  import org.owasp.validator.html.AntiSamy;
  import org.owasp.validator.html.Policy;
  import org.owasp.validator.html.PolicyException;
