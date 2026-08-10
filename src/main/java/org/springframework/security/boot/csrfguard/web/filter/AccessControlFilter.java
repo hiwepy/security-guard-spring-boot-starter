@@ -10,7 +10,7 @@ import java.io.IOException;
  * {@code AccessControlFilter}. Subclasses implement {@link #isAccessAllowed} and
  * {@link #onAccessDenied} to control request flow.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public abstract class AccessControlFilter implements Filter {

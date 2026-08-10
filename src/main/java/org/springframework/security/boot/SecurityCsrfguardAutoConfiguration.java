@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * depend on {@code javax.servlet} and are therefore incompatible with Spring Boot 4.x
  * (which uses {@code jakarta.servlet}). The servlet and listener beans have been removed.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 
 /**
  * RichText XSS(Cross Site Scripting)，即跨站脚本攻击request过滤
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper {
 

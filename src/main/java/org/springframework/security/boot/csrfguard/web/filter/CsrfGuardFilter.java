@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * was removed because CSRFGuard 4.x depends on {@code javax.servlet}, which is
  * incompatible with Spring Boot 4.x ({@code jakarta.servlet}).</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class CsrfGuardFilter extends AccessControlFilter {
