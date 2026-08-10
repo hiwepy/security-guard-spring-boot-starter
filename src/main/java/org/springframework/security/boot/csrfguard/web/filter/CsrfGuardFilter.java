@@ -26,7 +26,7 @@ import jakarta.servlet.http.HttpSession;
 
 /**                
  * 拷贝 org.owasp.csrfguard.CsrfGuardFilter
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class CsrfGuardFilter extends AccessControlFilter {
 	
