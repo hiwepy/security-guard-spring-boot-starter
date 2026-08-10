@@ -17,7 +17,7 @@ package org.springframework.security.boot.antisamy.utils;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
