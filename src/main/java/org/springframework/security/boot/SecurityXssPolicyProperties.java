@@ -26,6 +26,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(SecurityXssPolicyProperties.PREFIX)
 public class SecurityXssPolicyProperties {
 
+	/**
+	 * Returns the enabled.
+	 *
+	 * @return the enabled
+	 */
 	public static final String PREFIX = "spring.security.xss-policy";
 
 	/** whetherenable **/
@@ -34,9 +39,29 @@ public class SecurityXssPolicyProperties {
 	/** 需要进行Xss检查的Header */
 	protected String[] policyHeaders = null;
 
+	/**
+	 * Returns the enabled.
+	 *
+	 * @return the enabled
+	 */
 	public boolean isEnabled() { return enabled; }
+	/**
+	 * Sets the enabled.
+	 *
+	 * @param enabled the enabled
+	 */
 	public void setEnabled(boolean enabled) { this.enabled = enabled; }
+	/**
+	 * Returns the policy headers.
+	 *
+	 * @return the policy headers
+	 */
 	public String[] getPolicyHeaders() { return policyHeaders; }
+	/**
+	 * Sets the policy headers.
+	 *
+	 * @param policyHeaders the policy headers
+	 */
 	public void setPolicyHeaders(String[] policyHeaders) { this.policyHeaders = policyHeaders; }
 
 }

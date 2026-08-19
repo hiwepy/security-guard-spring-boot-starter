@@ -15,13 +15,32 @@ import java.io.IOException;
  */
 public abstract class AccessControlFilter implements Filter {
 
+    /**
+     * init.
+     *
+     * @param filterConfig the filter config
+     * @throws ServletException if an error occurs
+     */
     protected FilterConfig filterConfig;
 
+    /**
+     * init.
+     *
+     * @param filterConfig the filter config
+     * @throws ServletException if an error occurs
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.filterConfig = filterConfig;
     }
 
+    /**
+     * do Filter.
+     *
+     * @param request the request
+     * @param response the response
+     * @param chain the chain
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -39,12 +58,32 @@ public abstract class AccessControlFilter implements Filter {
         }
     }
 
+    /**
+     * destroy.
+     *
+     */
     @Override
     public void destroy() {
     }
 
+    /**
+     * Determines whether is access allowed.
+     *
+     * @param request the request
+     * @param response the response
+     * @param mappedValue the mapped value
+     * @return the result
+     */
     protected abstract boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
             throws Exception;
 
+    /**
+     * Determines whether on access denied.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the result
+     * @throws Exception if an error occurs
+     */
     protected abstract boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception;
 }

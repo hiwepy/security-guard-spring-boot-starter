@@ -54,6 +54,12 @@ public class URLUtils {
 		}
 	}
 	
+    /**
+     * escape.
+     *
+     * @param name the name
+     * @return the result
+     */
     public static String escape(String name) {
         String ret = "";
 
@@ -66,6 +72,12 @@ public class URLUtils {
         return ret;
     }
 
+    /**
+     * unescape.
+     *
+     * @param name the name
+     * @return the result
+     */
     public static String unescape(String name) {
         String ret = "";
 

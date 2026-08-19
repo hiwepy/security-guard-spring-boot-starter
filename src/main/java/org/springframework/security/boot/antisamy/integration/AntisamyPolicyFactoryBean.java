@@ -32,25 +32,51 @@ public class AntisamyPolicyFactoryBean implements FactoryBean<Policy>{
 	 */
 	private String policyConfigFilePath;
 	
+	/**
+	 * Returns the object.
+	 *
+	 * @return the object
+	 * @throws Exception if an error occurs
+	 */
 	@Override
 	public Policy getObject() throws Exception {
 		return Policy.getInstance(ResourceUtils.getFile(policyConfigFilePath));
 	}
 
+	/**
+	 * Returns the object type.
+	 *
+	 * @return the object type
+	 */
 	@Override
 	public Class<?> getObjectType() {
 		return Policy.class;
 	}
 
+	/**
+	 * Returns the singleton.
+	 *
+	 * @return the singleton
+	 */
 	@Override
 	public boolean isSingleton() {
 		return true;
 	}
 
+	/**
+	 * Returns the policy config file path.
+	 *
+	 * @return the policy config file path
+	 */
 	public String getPolicyConfigFilePath() {
 		return policyConfigFilePath;
 	}
 
+	/**
+	 * Sets the policy config file path.
+	 *
+	 * @param policyConfigFilePath the policy config file path
+	 */
 	public void setPolicyConfigFilePath(String policyConfigFilePath) {
 		this.policyConfigFilePath = policyConfigFilePath;
 	}

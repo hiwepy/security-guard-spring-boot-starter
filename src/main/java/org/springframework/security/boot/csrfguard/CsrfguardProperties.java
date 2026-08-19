@@ -22,6 +22,7 @@ import java.util.*;
 /**
  * TODO
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class CsrfguardProperties {
 
@@ -42,10 +43,21 @@ public class CsrfguardProperties {
 			this.implClassName = implClassName;
 		}
 
+		/**
+		 * class Name.
+		 *
+		 * @return the result
+		 */
 		public String className() {
 			return implClassName;
 		}
 
+		/**
+		 * Determines whether equals.
+		 *
+		 * @param loggerType the logger type
+		 * @return the result
+		 */
 		public boolean equals(LoggerType loggerType) {
 			return this.compareTo(loggerType) == 0;
 		}
@@ -91,174 +103,389 @@ public class CsrfguardProperties {
 
 	private Set<String> unprotectedMethods = new HashSet<String>();
 
+	/**
+	 * Returns the enabled.
+	 *
+	 * @return the enabled
+	 */
 	public boolean isEnabled() {
 		return enabled;
 	}
 
+	/**
+	 * Sets the enabled.
+	 *
+	 * @param enabled the enabled
+	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	/**
+	 * Returns the logger.
+	 *
+	 * @return the logger
+	 */
 	public LoggerType getLogger() {
 		return logger;
 	}
 
+	/**
+	 * Sets the logger.
+	 *
+	 * @param logger the logger
+	 */
 	public void setLogger(LoggerType logger) {
 		this.logger = logger;
 	}
 
+	/**
+	 * Returns the token name.
+	 *
+	 * @return the token name
+	 */
 	public String getTokenName() {
 		return tokenName;
 	}
 
+	/**
+	 * Sets the token name.
+	 *
+	 * @param tokenName the token name
+	 */
 	public void setTokenName(String tokenName) {
 		this.tokenName = tokenName;
 	}
 
+	/**
+	 * Returns the token length.
+	 *
+	 * @return the token length
+	 */
 	public int getTokenLength() {
 		return tokenLength;
 	}
 
+	/**
+	 * Sets the token length.
+	 *
+	 * @param tokenLength the token length
+	 */
 	public void setTokenLength(int tokenLength) {
 		this.tokenLength = tokenLength;
 	}
 
+	/**
+	 * Returns the rotate enabled.
+	 *
+	 * @return the rotate enabled
+	 */
 	public boolean isRotateEnabled() {
 		return rotateEnabled;
 	}
 
+	/**
+	 * Sets the rotate enabled.
+	 *
+	 * @param rotateEnabled the rotate enabled
+	 */
 	public void setRotateEnabled(boolean rotateEnabled) {
 		this.rotateEnabled = rotateEnabled;
 	}
 
+	/**
+	 * Returns the token per page enabled.
+	 *
+	 * @return the token per page enabled
+	 */
 	public boolean isTokenPerPageEnabled() {
 		return tokenPerPageEnabled;
 	}
 
+	/**
+	 * Sets the token per page enabled.
+	 *
+	 * @param tokenPerPageEnabled the token per page enabled
+	 */
 	public void setTokenPerPageEnabled(boolean tokenPerPageEnabled) {
 		this.tokenPerPageEnabled = tokenPerPageEnabled;
 	}
 
+	/**
+	 * Returns the validation when no session exists.
+	 *
+	 * @return the validation when no session exists
+	 */
 	public boolean isValidationWhenNoSessionExists() {
 		return validationWhenNoSessionExists;
 	}
 
+	/**
+	 * Sets the validation when no session exists.
+	 *
+	 * @param validationWhenNoSessionExists the validation when no session exists
+	 */
 	public void setValidationWhenNoSessionExists(boolean validationWhenNoSessionExists) {
 		this.validationWhenNoSessionExists = validationWhenNoSessionExists;
 	}
 
+	/**
+	 * Returns the token per page precreate enabled.
+	 *
+	 * @return the token per page precreate enabled
+	 */
 	public boolean isTokenPerPagePrecreateEnabled() {
 		return tokenPerPagePrecreateEnabled;
 	}
 
+	/**
+	 * Sets the token per page precreate enabled.
+	 *
+	 * @param tokenPerPagePrecreateEnabled the token per page precreate enabled
+	 */
 	public void setTokenPerPagePrecreateEnabled(boolean tokenPerPagePrecreateEnabled) {
 		this.tokenPerPagePrecreateEnabled = tokenPerPagePrecreateEnabled;
 	}
 
+	/**
+	 * Returns the print config.
+	 *
+	 * @return the print config
+	 */
 	public boolean isPrintConfig() {
 		return printConfig;
 	}
 
+	/**
+	 * Sets the print config.
+	 *
+	 * @param printConfig the print config
+	 */
 	public void setPrintConfig(boolean printConfig) {
 		this.printConfig = printConfig;
 	}
 
+	/**
+	 * Returns the prng.
+	 *
+	 * @return the prng
+	 */
 	public String getPrng() {
 		return prng;
 	}
 
+	/**
+	 * Sets the prng.
+	 *
+	 * @param prng the prng
+	 */
 	public void setPrng(String prng) {
 		this.prng = prng;
 	}
 
+	/**
+	 * Returns the prng provider.
+	 *
+	 * @return the prng provider
+	 */
 	public String getPrngProvider() {
 		return prngProvider;
 	}
 
+	/**
+	 * Sets the prng provider.
+	 *
+	 * @param prngProvider the prng provider
+	 */
 	public void setPrngProvider(String prngProvider) {
 		this.prngProvider = prngProvider;
 	}
 
+	/**
+	 * Returns the new token landing page.
+	 *
+	 * @return the new token landing page
+	 */
 	public String getNewTokenLandingPage() {
 		return newTokenLandingPage;
 	}
 
+	/**
+	 * Sets the new token landing page.
+	 *
+	 * @param newTokenLandingPage the new token landing page
+	 */
 	public void setNewTokenLandingPage(String newTokenLandingPage) {
 		this.newTokenLandingPage = newTokenLandingPage;
 	}
 
+	/**
+	 * Returns the use new token landing page.
+	 *
+	 * @return the use new token landing page
+	 */
 	public boolean isUseNewTokenLandingPage() {
 		return useNewTokenLandingPage;
 	}
 
+	/**
+	 * Sets the use new token landing page.
+	 *
+	 * @param useNewTokenLandingPage the use new token landing page
+	 */
 	public void setUseNewTokenLandingPage(boolean useNewTokenLandingPage) {
 		this.useNewTokenLandingPage = useNewTokenLandingPage;
 	}
 
+	/**
+	 * Returns the ajax enabled.
+	 *
+	 * @return the ajax enabled
+	 */
 	public boolean isAjaxEnabled() {
 		return ajaxEnabled;
 	}
 
+	/**
+	 * Sets the ajax enabled.
+	 *
+	 * @param ajaxEnabled the ajax enabled
+	 */
 	public void setAjaxEnabled(boolean ajaxEnabled) {
 		this.ajaxEnabled = ajaxEnabled;
 	}
 
+	/**
+	 * Returns the protect enabled.
+	 *
+	 * @return the protect enabled
+	 */
 	public boolean isProtectEnabled() {
 		return protectEnabled;
 	}
 
+	/**
+	 * Sets the protect enabled.
+	 *
+	 * @param protectEnabled the protect enabled
+	 */
 	public void setProtectEnabled(boolean protectEnabled) {
 		this.protectEnabled = protectEnabled;
 	}
 
+	/**
+	 * Returns the session key.
+	 *
+	 * @return the session key
+	 */
 	public String getSessionKey() {
 		return sessionKey;
 	}
 
+	/**
+	 * Sets the session key.
+	 *
+	 * @param sessionKey the session key
+	 */
 	public void setSessionKey(String sessionKey) {
 		this.sessionKey = sessionKey;
 	}
 
+	/**
+	 * Returns the actions.
+	 *
+	 * @return the actions
+	 */
 	public Map<String, String> getActions() {
 		return actions;
 	}
 
+	/**
+	 * Sets the actions.
+	 *
+	 * @param actions the actions
+	 */
 	public void setActions(Map<String, String> actions) {
 		this.actions = actions;
 	}
 
+	/**
+	 * Returns the protected pages.
+	 *
+	 * @return the protected pages
+	 */
 	public Map<String, String> getProtectedPages() {
 		return protectedPages;
 	}
 
+	/**
+	 * Sets the protected pages.
+	 *
+	 * @param protectedPages the protected pages
+	 */
 	public void setProtectedPages(Map<String, String> protectedPages) {
 		this.protectedPages = protectedPages;
 	}
 
+	/**
+	 * Returns the unprotected pages.
+	 *
+	 * @return the unprotected pages
+	 */
 	public Map<String, String> getUnprotectedPages() {
 		return unprotectedPages;
 	}
 
+	/**
+	 * Sets the unprotected pages.
+	 *
+	 * @param unprotectedPages the unprotected pages
+	 */
 	public void setUnprotectedPages(Map<String, String> unprotectedPages) {
 		this.unprotectedPages = unprotectedPages;
 	}
 
+	/**
+	 * Returns the protected methods.
+	 *
+	 * @return the protected methods
+	 */
 	public Set<String> getProtectedMethods() {
 		return protectedMethods;
 	}
 
+	/**
+	 * Sets the protected methods.
+	 *
+	 * @param protectedMethods the protected methods
+	 */
 	public void setProtectedMethods(Set<String> protectedMethods) {
 		this.protectedMethods = protectedMethods;
 	}
 
+	/**
+	 * Returns the unprotected methods.
+	 *
+	 * @return the unprotected methods
+	 */
 	public Set<String> getUnprotectedMethods() {
 		return unprotectedMethods;
 	}
 
+	/**
+	 * Sets the unprotected methods.
+	 *
+	 * @param unprotectedMethods the unprotected methods
+	 */
 	public void setUnprotectedMethods(Set<String> unprotectedMethods) {
 		this.unprotectedMethods = unprotectedMethods;
 	}
 
+	/**
+	 * to Properties.
+	 *
+	 * @return the result
+	 */
 	public Properties toProperties() {
 
 		Properties properties = new Properties();

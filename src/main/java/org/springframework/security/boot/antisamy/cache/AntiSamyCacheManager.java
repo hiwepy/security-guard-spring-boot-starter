@@ -12,13 +12,26 @@
 /**
  * AntiSamy 对象cache管理
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class AntiSamyCacheManager {
 	
 	private volatile static AntiSamyCacheManager singleton;
 	protected static ConcurrentMap<Policy, AntiSamy> COMPLIED_ANTISAMY = new ConcurrentHashMap<Policy, AntiSamy>();
+	/**
+	 * get Instance.
+	 *
+	 * @param policyCacheManager the policy cache manager
+	 * @return the result
+	 */
 	protected PolicyCacheManager policyCacheManager;
 	
+	/**
+	 * get Instance.
+	 *
+	 * @param policyCacheManager the policy cache manager
+	 * @return the result
+	 */
 	public static AntiSamyCacheManager getInstance(PolicyCacheManager policyCacheManager) {
 		if (singleton == null) {
 			synchronized (AntiSamyCacheManager.class) {
@@ -34,11 +47,29 @@ public class AntiSamyCacheManager {
 		this.policyCacheManager = policyCacheManager;
 	}
 	
+	/**
+	 * get Xss Anti Samy Wrapper.
+	 *
+	 * @param relativePath the relative path
+	 * @param scanType the scan type
+	 * @param policyHeaders the policy headers
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	public AntiSamyWrapper getXssAntiSamyWrapper(String relativePath, int scanType, String[] policyHeaders) throws PolicyException{
 		Policy xssPolicy = this.policyCacheManager.getXssPolicy(relativePath);
 		return getXssAntiSamyWrapper(xssPolicy, scanType, policyHeaders);
 	}
 	
+	/**
+	 * get Xss Anti Samy Wrapper.
+	 *
+	 * @param xssPolicy the xss policy
+	 * @param scanType the scan type
+	 * @param policyHeaders the policy headers
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	public AntiSamyWrapper getXssAntiSamyWrapper(Policy xssPolicy, int scanType, String[] policyHeaders) throws PolicyException {
 		if(xssPolicy == null) {
 			throw new PolicyException("Policy Not Found.");
@@ -55,11 +86,23 @@ public class AntiSamyCacheManager {
 		return new AntiSamyWrapper(ret, xssPolicy, scanType, policyHeaders);
 	}
 
+	/**
+	 * get Default Anti Samy Wrapper.
+	 *
+	 * @param scanType the scan type
+	 * @param policyHeaders the policy headers
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	public AntiSamyWrapper getDefaultAntiSamyWrapper(int scanType, String[] policyHeaders) throws PolicyException {
 		Policy xssPolicy = this.policyCacheManager.getXssPolicy(AntisamyProperties.DEFAULT_POLICY);
 		return getXssAntiSamyWrapper(xssPolicy, scanType, policyHeaders);
 	}
 	
+	/**
+	 * destroy.
+	 *
+	 */
 	public void destroy() {
 		synchronized (COMPLIED_ANTISAMY) {
 			policyCacheManager.destroy();

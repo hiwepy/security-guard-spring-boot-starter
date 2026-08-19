@@ -25,6 +25,7 @@ import java.util.Map;
 /**
  * TODO
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class AntisamyProperties {
 
@@ -43,38 +44,83 @@ public class AntisamyProperties {
 	/**default的防XSS攻击的规则configuration*/
 	protected String defaultPolicy = DEFAULT_POLICY;
 
+	/**
+	 * Returns the scan type.
+	 *
+	 * @return the scan type
+	 */
 	public int getScanType() {
 		return scanType;
 	}
 
+	/**
+	 * Sets the scan type.
+	 *
+	 * @param scanType the scan type
+	 */
 	public void setScanType(int scanType) {
 		this.scanType = scanType;
 	}
 
+	/**
+	 * Returns the include patterns.
+	 *
+	 * @return the include patterns
+	 */
 	public String[] getIncludePatterns() {
 		return includePatterns;
 	}
 
+	/**
+	 * Sets the include patterns.
+	 *
+	 * @param includePatterns the include patterns
+	 */
 	public void setIncludePatterns(String[] includePatterns) {
 		this.includePatterns = includePatterns;
 	}
 
+	/**
+	 * Returns the exclude patterns.
+	 *
+	 * @return the exclude patterns
+	 */
 	public String[] getExcludePatterns() {
 		return excludePatterns;
 	}
 
+	/**
+	 * Sets the exclude patterns.
+	 *
+	 * @param excludePatterns the exclude patterns
+	 */
 	public void setExcludePatterns(String[] excludePatterns) {
 		this.excludePatterns = excludePatterns;
 	}
 
+	/**
+	 * Returns the policy mappings.
+	 *
+	 * @return the policy mappings
+	 */
 	public Map<String, String> getPolicyMappings() {
 		return policyMappings;
 	}
 
+	/**
+	 * Sets the policy mappings.
+	 *
+	 * @param policyMappings the policy mappings
+	 */
 	public void setPolicyMappings(Map<String, String> policyMappings) {
 		this.policyMappings = policyMappings;
 	}
 
+	/**
+	 * Sets the policy definitions.
+	 *
+	 * @param policyDefinitions the policy definitions
+	 */
 	public void setPolicyDefinitions(String policyDefinitions) {
 		try {
 			Ini ini = new Ini();
@@ -89,18 +135,38 @@ public class AntisamyProperties {
 		}
 	}
 	
+	/**
+	 * Returns the policy headers.
+	 *
+	 * @return the policy headers
+	 */
 	public String[] getPolicyHeaders() {
 		return policyHeaders;
 	}
 
+	/**
+	 * Sets the policy headers.
+	 *
+	 * @param policyHeaders the policy headers
+	 */
 	public void setPolicyHeaders(String[] policyHeaders) {
 		this.policyHeaders = policyHeaders;
 	}
 
+	/**
+	 * Returns the default policy.
+	 *
+	 * @return the default policy
+	 */
 	public String getDefaultPolicy() {
 		return defaultPolicy;
 	}
 
+	/**
+	 * Sets the default policy.
+	 *
+	 * @param defaultPolicy the default policy
+	 */
 	public void setDefaultPolicy(String defaultPolicy) {
 		this.defaultPolicy = defaultPolicy;
 	}

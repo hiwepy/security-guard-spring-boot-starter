@@ -20,6 +20,7 @@ import java.io.IOException;
 /**
  * Antisamy XSS(Cross Site Scripting)，即跨站脚本攻击request过滤
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	
@@ -33,11 +34,26 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 	/** Antisamy configuration */
 	protected final AntisamyProperties properties;
 	
+	/**
+	 * Constructs a new http servlet request antisamy filter instance.
+	 *
+	 * @param antiSamyCacheManager the anti samy cache manager
+	 * @param properties the properties
+	 */
 	public HttpServletRequestAntisamyFilter(AntiSamyCacheManager antiSamyCacheManager, AntisamyProperties properties) {
 		this.antiSamyCacheManager = antiSamyCacheManager;
 		this.properties = properties;
 	}
 
+	/**
+	 * do Filter Internal.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @param filterChain the filter chain
+	 * @throws ServletException if an error occurs
+	 * @throws IOException if an error occurs
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (this.matches(request)) {
@@ -52,6 +68,12 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 		}
 	}
 	
+	/**
+	 * Determines whether matches.
+	 *
+	 * @param request the request
+	 * @return the result
+	 */
 	protected boolean matches(HttpServletRequest request) {
 		String lookupPath = this.urlPathHelper.getLookupPathForRequest(request);
 		return this.matches(lookupPath, this.pathMatcher);
@@ -84,6 +106,13 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 		}
 	}
 	
+	/**
+	 * get Anti Samy Wrapper For Request.
+	 *
+	 * @param request the request
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	protected AntiSamyWrapper getAntiSamyWrapperForRequest(HttpServletRequest request) throws PolicyException {
 		//解析requestpath
 		String lookupPath = this.urlPathHelper.getLookupPathForRequest(request);
@@ -96,6 +125,10 @@ public class HttpServletRequestAntisamyFilter extends OncePerRequestFilter {
 		return antiSamyCacheManager.getDefaultAntiSamyWrapper(properties.getScanType(), properties.getPolicyHeaders());
 	}
 	
+	/**
+	 * destroy.
+	 *
+	 */
 	@Override
 	public void destroy() {
 		super.destroy();

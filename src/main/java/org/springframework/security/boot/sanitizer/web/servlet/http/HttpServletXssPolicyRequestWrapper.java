@@ -16,6 +16,7 @@ import java.util.Map.Entry;
 /**
  * XSS(Cross Site Scripting)，即跨站脚本攻击request过滤;
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrapper {
 
@@ -25,12 +26,24 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 	/**需要进行Xss检查的Header*/
 	protected String[] policyHeaders = null;
 	
+	/**
+	 * Constructs a new http servlet xss policy request wrapper instance.
+	 *
+	 * @param policyFactory the policy factory
+	 * @param policyHeaders the policy headers
+	 * @param request the request
+	 */
 	public HttpServletXssPolicyRequestWrapper(PolicyFactory policyFactory, String[] policyHeaders, HttpServletRequest request) {
 		super(request);
 		this.policyFactory = policyFactory;
 		this.policyHeaders = policyHeaders;
 	}
 	
+	/**
+	 * Returns the parameter map.
+	 *
+	 * @return the parameter map
+	 */
 	@Override
 	public Map<String, String[]> getParameterMap() {
 		Map<String, String[]> request_map = super.getParameterMap();
@@ -46,6 +59,12 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 		return request_map;
 	}
 
+	/**
+	 * get Parameter Values.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public String[] getParameterValues(String name) {
 		String[] rawValues = super.getParameterValues(name);
@@ -59,6 +78,12 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 		return cleanedValues;
 	}
 
+	/**
+	 * get Parameter.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public String getParameter(String name) {
 		String value = super.getParameter(name);
@@ -68,6 +93,12 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 		return xssClean(value);
 	}
 
+	/**
+	 * get Headers.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
  	@Override
 	public Enumeration<String> getHeaders(String name) {
  		if(XssScanUtils.isXssHeader(policyHeaders, name)){
@@ -76,6 +107,12 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
         return super.getHeaders(name);
     } 
 	
+	/**
+	 * get Header.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public String getHeader(String name) {
 		String value = super.getHeader(name);
@@ -88,6 +125,11 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 		return value;
 	}
 	
+	/**
+	 * Returns the cookies.
+	 *
+	 * @return the cookies
+	 */
 	@Override
 	public Cookie[] getCookies() {
 		Cookie[] existingCookies = super.getCookies();
@@ -100,11 +142,22 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 		return existingCookies;
 	}
 
+	/**
+	 * Returns the query string.
+	 *
+	 * @return the query string
+	 */
 	@Override
 	public String getQueryString() {
 		return xssClean(super.getQueryString());
 	}
 
+	/**
+	 * xss Clean.
+	 *
+	 * @param taintedHTML the tainted h t m l
+	 * @return the result
+	 */
 	public String xssClean(String taintedHTML) {
 		LOG.debug("Tainted :" + taintedHTML);
 		String cleanHTML = policyFactory.sanitize(taintedHTML);
@@ -112,6 +165,11 @@ public class HttpServletXssPolicyRequestWrapper extends HttpServletRequestWrappe
 		return cleanHTML;
 	}
 	
+	/**
+	 * _get HTTP Servlet Request.
+	 *
+	 * @return the result
+	 */
 	protected HttpServletRequest _getHttpServletRequest() {
 		 return (HttpServletRequest) super.getRequest();
     }

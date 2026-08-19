@@ -16,14 +16,27 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Policy对象cache管理
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class PolicyCacheManager {
 	
 	private volatile static PolicyCacheManager singleton;
 	protected static Logger LOG = LoggerFactory.getLogger(PolicyCacheManager.class);
 	protected static ConcurrentMap<String, Policy> COMPLIED_POLICY = new ConcurrentHashMap<String, Policy>();
+	/**
+	 * get Instance.
+	 *
+	 * @param resourceResolver the resource resolver
+	 * @return the result
+	 */
 	protected ResourcePatternResolver resourceResolver;
 	
+	/**
+	 * get Instance.
+	 *
+	 * @param resourceResolver the resource resolver
+	 * @return the result
+	 */
 	public static PolicyCacheManager getInstance(ResourcePatternResolver resourceResolver) {
 		if (singleton == null) {
 			synchronized (PolicyCacheManager.class) {
@@ -39,6 +52,13 @@ public class PolicyCacheManager {
 		this.resourceResolver = resourceResolver;
 	}
 	
+	/**
+	 * get Xss Policy.
+	 *
+	 * @param relativePath the relative path
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	public Policy getXssPolicy(String relativePath) throws PolicyException {
 		try {
 			
@@ -65,6 +85,13 @@ public class PolicyCacheManager {
 		}
 	}
 	
+	/**
+	 * get Xss Policy.
+	 *
+	 * @param url the url
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	public Policy getXssPolicy(URL url) throws PolicyException{
 		try {
 			if(url == null){
@@ -88,6 +115,13 @@ public class PolicyCacheManager {
 		}
 	}
 	
+	/**
+	 * get Xss Policy.
+	 *
+	 * @param policy the policy
+	 * @return the result
+	 * @throws PolicyException if an error occurs
+	 */
 	public Policy getXssPolicy(File policy) throws PolicyException {
 		try {
 			if(policy == null || !policy.exists() || !policy.isFile()){
@@ -111,6 +145,10 @@ public class PolicyCacheManager {
 		}
 	}
 	
+	/**
+	 * destroy.
+	 *
+	 */
 	public void destroy() {
 		synchronized (COMPLIED_POLICY) {
 			COMPLIED_POLICY.clear();

@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 /**
  * XSS扫描过滤工具
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class AntiSamyScanUtils {
 	
@@ -25,6 +26,16 @@ public class AntiSamyScanUtils {
 	protected static Pattern HTML_PATTERN = Pattern.compile("<[^>]+>");
 	protected static ConcurrentMap<String, String> COMPLIED_FIXS = new ConcurrentHashMap<String, String>();
 	
+	/**
+	 * fix.
+	 *
+	 * @param proxy the proxy
+	 * @param tag the tag
+	 * @param esc the esc
+	 * @return the result
+	 * @throws ScanException if an error occurs
+	 * @throws PolicyException if an error occurs
+	 */
 	protected static String fix(AntiSamyWrapper proxy, String tag, String esc) throws ScanException, PolicyException {
 		// AntiSamy对象
 		AntiSamy antiSamy = proxy.getAntiSamy();
@@ -44,6 +55,14 @@ public class AntiSamyScanUtils {
 		return ret;
 	}
 	
+	/**
+	 * xss Clean.
+	 *
+	 * @param proxy the proxy
+	 * @param taintedHTML the tainted h t m l
+	 * @param cleanbad the cleanbad
+	 * @return the result
+	 */
 	public static String xssClean(AntiSamyWrapper proxy, String taintedHTML, boolean cleanbad) {
 		if (proxy != null && taintedHTML != null) {
 			try {
@@ -81,12 +100,27 @@ public class AntiSamyScanUtils {
 		return taintedHTML;
 	}
 	
+	/**
+	 * xss Clean.
+	 *
+	 * @param request the request
+	 * @param proxy the proxy
+	 * @param taintedHTML the tainted h t m l
+	 * @return the result
+	 */
 	public static String xssClean(HttpServletRequest request, AntiSamyWrapper proxy, String taintedHTML) {
 		String cleanbadStr = request.getParameter("cleanbad");
 		boolean cleanbad = Boolean.parseBoolean((cleanbadStr != null && cleanbadStr.trim().length() > 0) ? cleanbadStr.trim() : "true" ) ;
 		return xssClean(proxy, taintedHTML, cleanbad);
 	}
 	
+	/**
+	 * xss Clean.
+	 *
+	 * @param proxy the proxy
+	 * @param taintedHTML the tainted h t m l
+	 * @return the result
+	 */
 	public static String xssClean(AntiSamyWrapper proxy,String taintedHTML) {
 		if (proxy != null && taintedHTML != null) {
 			try {

@@ -20,18 +20,36 @@ import org.springframework.security.boot.sanitizer.web.filter.HttpServletRequest
 @AutoConfigureBefore( name = {
 	"org.apache.shiro.spring.config.web.autoconfigure.ShiroWebFilterConfiguration" // shiro-spring-boot-web-starter
 })
+/**
+ * <p>Configuration properties.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 @ConditionalOnWebApplication
 @ConditionalOnClass({ PolicyFactory.class })
 @ConditionalOnProperty(prefix = SecurityXssPolicyProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties(SecurityXssPolicyProperties.class)
 public class SecurityXssPolicyWebFilterConfiguration {
 	 
+	/**
+	 * policy Factory.
+	 *
+	 * @return the result
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public PolicyFactory policyFactory() {
 		return new HtmlPolicyBuilder().toFactory();
 	}
 	
+	/**
+	 * xss Policy Filter.
+	 *
+	 * @param policyFactory the policy factory
+	 * @param properties the properties
+	 * @return the result
+	 */
 	@Bean("xssPolicy")
 	@ConditionalOnMissingBean(name = "xssPolicy")
 	public FilterRegistrationBean<HttpServletRequestXssPolicyFilter> xssPolicyFilter(PolicyFactory policyFactory, SecurityXssPolicyProperties properties){

@@ -24,6 +24,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(SecurityCsrfguardProperties.class)
 public class SecurityCsrfguardAutoConfiguration {
 
+    /**
+     * csrf Guard Filter.
+     *
+     * @return the result
+     * @throws Exception if an error occurs
+     */
 	@Bean("csrf")
     @ConditionalOnMissingBean(name = "csrf")
     protected FilterRegistrationBean<CsrfGuardFilter> csrfGuardFilter() throws Exception {

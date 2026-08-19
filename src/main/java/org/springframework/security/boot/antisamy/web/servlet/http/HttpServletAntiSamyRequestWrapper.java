@@ -15,16 +15,28 @@ import java.util.Map.Entry;
 /**
  * RichText XSS(Cross Site Scripting)，即跨站脚本攻击request过滤
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper {
 
 	private AntiSamyWrapper antiSamyWrapper = null;
 	
+	/**
+	 * Constructs a new http servlet anti samy request wrapper instance.
+	 *
+	 * @param antiSamyWrapper the anti samy wrapper
+	 * @param request the request
+	 */
 	public HttpServletAntiSamyRequestWrapper(AntiSamyWrapper antiSamyWrapper, HttpServletRequest request) {
 		super(request);
 		this.antiSamyWrapper = antiSamyWrapper;
 	}
 	
+	/**
+	 * Returns the parameter map.
+	 *
+	 * @return the parameter map
+	 */
 	@Override
 	public Map<String, String[]> getParameterMap() {
 		Map<String, String[]> request_map = super.getParameterMap();
@@ -40,6 +52,12 @@ public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper
 		return request_map;
 	}
 
+	/**
+	 * get Parameter Values.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public String[] getParameterValues(String name) {
 		String[] rawValues = super.getParameterValues(name);
@@ -53,6 +71,12 @@ public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper
 		return cleanedValues;
 	}
 
+	/**
+	 * get Parameter.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public String getParameter(String name) {
 		String str = super.getParameter(name);
@@ -62,6 +86,12 @@ public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper
 		return xssClean(str);
 	}
 
+	/**
+	 * get Headers.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public Enumeration<String> getHeaders(String name) {
 		if(XssScanUtils.isXssHeader(antiSamyWrapper.getPolicyHeaders(), name)){
@@ -70,6 +100,12 @@ public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper
         return super.getHeaders(name);
     }
 	
+	/**
+	 * get Header.
+	 *
+	 * @param name the name
+	 * @return the result
+	 */
 	@Override
 	public String getHeader(String name) {
 		String value = super.getHeader(name);
@@ -82,6 +118,11 @@ public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper
 		return value;
 	}
 	
+	/**
+	 * Returns the cookies.
+	 *
+	 * @return the cookies
+	 */
 	@Override
 	public Cookie[] getCookies() {
 		Cookie[] existingCookies = super.getCookies();
@@ -94,15 +135,31 @@ public class HttpServletAntiSamyRequestWrapper extends HttpServletRequestWrapper
 		return existingCookies;
 	}
 
+	/**
+	 * Returns the query string.
+	 *
+	 * @return the query string
+	 */
 	@Override
 	public String getQueryString() {
 		return xssClean(super.getQueryString());
 	}
 
+	/**
+	 * xss Clean.
+	 *
+	 * @param taintedHTML the tainted h t m l
+	 * @return the result
+	 */
 	public String xssClean(String taintedHTML) {
 		return AntiSamyScanUtils.xssClean(_getHttpServletRequest(), antiSamyWrapper, taintedHTML);
 	}
 	
+	/**
+	 * _get HTTP Servlet Request.
+	 *
+	 * @return the result
+	 */
 	protected HttpServletRequest _getHttpServletRequest() {
 		 return (HttpServletRequest) super.getRequest();
     }

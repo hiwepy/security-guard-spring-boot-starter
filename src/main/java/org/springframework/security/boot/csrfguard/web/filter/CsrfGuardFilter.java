@@ -35,6 +35,14 @@ public class CsrfGuardFilter extends AccessControlFilter {
 
     private static final Logger log = LoggerFactory.getLogger(CsrfGuardFilter.class);
 
+    /**
+     * Determines whether is access allowed.
+     *
+     * @param request the request
+     * @param response the response
+     * @param mappedValue the mapped value
+     * @return the result
+     */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
             throws Exception {
@@ -42,6 +50,14 @@ public class CsrfGuardFilter extends AccessControlFilter {
         return true;
     }
 
+    /**
+     * Determines whether on access denied.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the result
+     * @throws Exception if an error occurs
+     */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {

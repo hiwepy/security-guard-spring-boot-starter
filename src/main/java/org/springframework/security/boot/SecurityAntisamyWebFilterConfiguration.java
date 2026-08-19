@@ -23,24 +23,49 @@ import org.springframework.security.boot.antisamy.web.filter.HttpServletRequestA
 @AutoConfigureBefore( name = {
 	"org.apache.shiro.spring.config.web.autoconfigure.ShiroWebFilterConfiguration" // shiro-spring-boot-web-starter
 })
+/**
+ * <p>Configuration properties.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 @ConditionalOnWebApplication
 @ConditionalOnClass({ org.owasp.validator.html.AntiSamy.class })
 @ConditionalOnProperty(prefix = SecurityAntisamyProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties(SecurityAntisamyProperties.class)
 public class SecurityAntisamyWebFilterConfiguration {
 
+	/**
+	 * policy Cache Manager.
+	 *
+	 * @param resourceResolver the resource resolver
+	 * @return the result
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public PolicyCacheManager policyCacheManager(ResourcePatternResolver resourceResolver) {
 		return PolicyCacheManager.getInstance(resourceResolver);
 	}
 	
+	/**
+	 * anti Samy Cache Manager.
+	 *
+	 * @param policyCacheManager the policy cache manager
+	 * @return the result
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public AntiSamyCacheManager antiSamyCacheManager(PolicyCacheManager policyCacheManager) {
 		return AntiSamyCacheManager.getInstance(policyCacheManager);
 	}
 	
+	/**
+	 * antisamy Filter.
+	 *
+	 * @param antiSamyCacheManager the anti samy cache manager
+	 * @param properties the properties
+	 * @return the result
+	 */
 	@Bean("antisamy")
 	@ConditionalOnMissingBean(name = "antisamy")
 	public FilterRegistrationBean<HttpServletRequestAntisamyFilter> antisamyFilter(AntiSamyCacheManager antiSamyCacheManager ,

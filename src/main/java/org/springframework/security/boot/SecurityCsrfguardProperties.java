@@ -41,6 +41,11 @@ public class SecurityCsrfguardProperties extends CsrfguardProperties {
 	@NestedConfigurationProperty
 	private CsrfguardJavascriptServletProperties javascript = new CsrfguardJavascriptServletProperties();
 
+	/**
+	 * to Properties.
+	 *
+	 * @return the result
+	 */
 	@Override
 	public Properties toProperties() {
 		
@@ -59,10 +64,20 @@ public class SecurityCsrfguardProperties extends CsrfguardProperties {
 		return properties;
 	}
 	
+	/**
+	 * Returns the javascript.
+	 *
+	 * @return the javascript
+	 */
 	public CsrfguardJavascriptServletProperties getJavascript() {
 		return javascript;
 	}
 
+	/**
+	 * Sets the javascript.
+	 *
+	 * @param javascript the javascript
+	 */
 	public void setJavascript(CsrfguardJavascriptServletProperties javascript) {
 		this.javascript = javascript;
 	}
